@@ -45,12 +45,8 @@ local function startDrivingVehicle()
 				end
 
 				if fuelAmount ~= newFuel then
-					if fuelTick == 15 then
-						fuelTick = 0
-					end
-
-					fuel.setFuel(vehState, vehicle, newFuel, fuelTick == 0)
-					fuelTick += 1
+					fuel.setFuel(vehState, vehicle, newFuel, fuelTick % 15 == 0)
+					fuelTick = (fuelTick + 1) % 15
 				end
 			end
 		else
